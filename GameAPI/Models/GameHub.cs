@@ -7,6 +7,16 @@ namespace GameAPI.Models
 {
     public class GameHub : Hub<IGameClient>
     {
+        public async Task CreateRoom()
+        {
+            var room = new Room("jmeno roomu");
+            return room.GetAccessToken();
+        }
+        
+        public async Task JoinRoom(string accessToken)
+        {
+            
+        }
         
     }
 
