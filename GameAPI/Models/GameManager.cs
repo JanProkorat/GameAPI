@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
@@ -7,6 +8,16 @@ namespace GameAPI.Models
 {
     public class GameManager : IGameManager
     {
+
+        public static readonly List<MatchDTO> matches = new List<MatchDTO>()
+        {
+            new MatchDTO{ Id = 1, Name = "Prvni", AccessToken = "access-token-prvni", State = MatchState.aktivni},
+            new MatchDTO{ Id = 2, Name = "Druhy", AccessToken = "access-token-druhy", State = MatchState.neaktivni},
+            new MatchDTO{ Id = 3, Name = "Treti", AccessToken = "access-token-treti", State = MatchState.aktivni },
+            new MatchDTO{ Id = 4, Name = "Ctvrty", AccessToken = "access-token-ctvrty", State = MatchState.neaktivni},
+            new MatchDTO{ Id = 5, Name = "Paty", AccessToken = "access-token-paty", State = MatchState.aktivni}
+        };
+
         public List<LeaderboardScoreDTO> GetLeaderBoardByGameType(string gameType)
         {
             switch (gameType)
@@ -42,22 +53,13 @@ namespace GameAPI.Models
 
         public List<MatchDTO> GetActiveMatches()
         {
-            List<MatchDTO> result = new List<MatchDTO>();
-            for (int i = 1; i < 6; i++)
-            {
-                result.Add(new MatchDTO { Id = new Random().Next(1, 50), Name = "Match" + i});
-            }
-            return result;
+            return matches.Where(x => x.State == MatchState.aktivni).ToList();
         }
 
         public string JoinMatch(int matchId)
         {
-            TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 80);
-
-            server.Start();
-            TcpClient client = server.AcceptTcpClient();
-            
-            return "";
+            var matchToJoin = matches.Find(x => x.Id == matchId);
+            return matchToJoin.AccessToken;
         }
     }
 

@@ -54,10 +54,10 @@ namespace GameAPI.Controllers
         [HttpPost]
         [ApiKey]
         [Route("match/join")]
-        public ActionResult<JoinMatchResponse> JoinMatch()
+        public ActionResult<JoinMatchResponse> JoinMatch([FromBody] int matchId)
         {
-            var result = _gameManager.JoinMatch();
-            return new JoinMatchResponse { };
+            var result = _gameManager.JoinMatch(matchId);
+            return new JoinMatchResponse { WebSocketToken = result };
         } 
     }
 }

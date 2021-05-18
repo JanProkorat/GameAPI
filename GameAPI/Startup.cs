@@ -85,7 +85,7 @@ namespace GameAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<GameHub>("game");
+                endpoints.MapHub<GameHub>("/WS");
             });
             
         }

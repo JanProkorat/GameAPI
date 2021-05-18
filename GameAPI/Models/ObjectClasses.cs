@@ -43,6 +43,8 @@ namespace GameAPI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string AccessToken { get; set; }
+        public MatchState State { get; set; }
     }
 
     public class GetActiveMatchesResponse
@@ -54,5 +56,10 @@ namespace GameAPI.Models
     public class JoinMatchResponse
     {
         public string WebSocketToken { get; set; }
+    }
+
+    public enum MatchState
+    {
+        neaktivni, aktivni
     }
 }

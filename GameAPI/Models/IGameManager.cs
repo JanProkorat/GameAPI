@@ -19,9 +19,11 @@ namespace GameAPI.Models
         public List<MatchDTO> GetActiveMatches();
 
         /// <summary>
-        /// Připojí hráče do aktivního zápasu
+        /// připojí k aktivnímu zápasu
         /// </summary>
-        /// <returns>WebSocket token</returns>
-        public string JoinMatch();
+        /// <param name="matchId"> id aktivního zápasu</param>
+        /// <returns>websocket token</returns>
+        public string JoinMatch(int matchId);
+
     }
 }
