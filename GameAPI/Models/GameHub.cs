@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using GameAPI.Controllers;
 using Microsoft.AspNetCore.SignalR;
 
 namespace GameAPI.Models
 {
+    [WebSocketFilter]
     public class GameHub : Hub<IGameClient>
     {
         public async Task Fire()
